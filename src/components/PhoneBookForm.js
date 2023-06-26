@@ -1,18 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { auth, db } from '../firebase-config';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, addDoc } from 'firebase/firestore';
 import { Form, Button } from 'react-bootstrap';
 import PhoneBookList from '../pages/PhoneBookList';
 
 const PhoneBookForm = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [entries, setEntries] = useState([]);
+  const [newName, setNewName] = useState('');
+  const [newNumber, setNewNumber] = useState('');
 
   // Used to establish a connection to the entries collecton in the database.
-  const entriesCollectionRef = collection(db, 'people');
+  const entriesCollectionRef = collection(db, 'entries');
 
   const handleQueryChange = event => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleNameChange = event => {
+    setNewName(event.target.value);
+  };
+
+  const handleNumberChange = event => {
+    setNewNumber(event.target.value);
+  };
+
+  const addEntry = async event => {
+    event.preventDefault();
+    await addDoc(entriesCollectionRef, {
+      name: newName,
+      phoneNumber: newNumber,
+      accountID: auth.currentUser.uid,
+    });
   };
 
   useEffect(() => {
@@ -50,7 +69,11 @@ const PhoneBookForm = () => {
           <Form>
             <Form.Group className='mb-3' controlId='formBasicName'>
               <Form.Label>Name</Form.Label>
-              <Form.Control type='Text' placeholder='Enter Name' />
+              <Form.Control
+                onChange={handleNameChange}
+                type='Text'
+                placeholder='Enter Name'
+              />
               {/* <Form.Text className='text-muted'>
               We'll never share your email with anyone else.
             </Form.Text> */}
@@ -58,10 +81,19 @@ const PhoneBookForm = () => {
 
             <Form.Group className='mb-3' controlId='formBasicNumber'>
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control type='Text' placeholder='Enter Phone Number' />
+              <Form.Control
+                onChange={handleNumberChange}
+                type='Text'
+                placeholder='Enter Phone Number'
+              />
             </Form.Group>
             <div className='d-grid mt-4'>
-              <Button variant='primary' type='submit' className='fw-bold'>
+              <Button
+                onClick={addEntry}
+                variant='primary'
+                type='submit'
+                className='fw-bold'
+              >
                 Add Person
               </Button>
             </div>
