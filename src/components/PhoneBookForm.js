@@ -32,6 +32,9 @@ const PhoneBookForm = () => {
       phoneNumber: newNumber,
       accountID: auth.currentUser.uid,
     });
+    setNewName('');
+    setNewNumber('');
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -57,7 +60,13 @@ const PhoneBookForm = () => {
       }
     };
     getEntries();
-  }, [entriesCollectionRef]);
+  }, []);
+
+  const filteredEntries = entries
+    ? entries.filter(entry =>
+        entry.name.toLowerCase().startsWith(searchQuery.toLowerCase())
+      )
+    : null;
 
   return (
     <main>
@@ -73,6 +82,7 @@ const PhoneBookForm = () => {
                 onChange={handleNameChange}
                 type='Text'
                 placeholder='Enter Name'
+                value={newName}
               />
               {/* <Form.Text className='text-muted'>
               We'll never share your email with anyone else.
@@ -85,6 +95,7 @@ const PhoneBookForm = () => {
                 onChange={handleNumberChange}
                 type='Text'
                 placeholder='Enter Phone Number'
+                value={newNumber}
               />
             </Form.Group>
             <div className='d-grid mt-4'>
@@ -110,7 +121,7 @@ const PhoneBookForm = () => {
           </Form.Group>
         </div>
       </section>
-      <PhoneBookList entries={entries} searchQuery={searchQuery} />
+      <PhoneBookList entries={filteredEntries} searchQuery={searchQuery} />
     </main>
   );
 };

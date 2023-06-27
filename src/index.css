@@ -81,3 +81,8 @@ body {
   justify-content: center;
   margin-top: 10rem;
 }
+
+.delete-btn {
+  align-self: flex-end;
+  width: fit-content;
+}
