@@ -1,4 +1,22 @@
-# Getting Started with Create React App
+# PhoneBook+
+
+This is my own improved version of the University of Helsinki's FSO phonebook project. The project utilizes React, React-Bootstrap, Firebase, and Google Authentication to create a phonebook application for storing and managing entries.
+
+## Features
+
+User Authentication: Users can sign in using their Google accounts to access the phonebook application.
+Add and Manage Entries: Users can add new entries to the phonebook by providing a name and phone number. Existing entries can be deleted as needed.
+Search Functionality: The phonebook provides a search feature that allows users to find specific entries based on the name.
+Real-time Updates: Any changes made to the phonebook, such as adding or deleting entries, are immediately reflected and synchronized across all connected devices.
+
+## Technologies Used
+
+React: A JavaScript library for building user interfaces.
+React-Bootstrap: A front-end framework that provides pre-designed UI components.
+Firebase: A platform that provides various backend services, including authentication and a NoSQL database.
+Google Authentication by Firebase: Integration with Google accounts for secure user authentication.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
