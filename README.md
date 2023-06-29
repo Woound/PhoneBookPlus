@@ -1,6 +1,11 @@
 # PhoneBook+
 
-This is my own improved version of the University of Helsinki's FSO phonebook project. The project utilizes React, React-Bootstrap, Firebase, and Google Authentication to create a phonebook application for storing and managing entries.
+This is my own improved version of the University of Helsinki's FSO phonebook project. The project utilizes React,
+React-Bootstrap, Firebase, and Google Authentication to create a phonebook application for storing and managing entries.
+
+Disclaimer: This project is a result of my learning process, and it may contain bugs or incomplete features. Please exercise caution and use it at your own risk.
+
+Link: https://fascinating-pegasus-62a9ef.netlify.app
 
 ## Features
 
